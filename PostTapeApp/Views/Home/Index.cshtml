@@ -1,8 +1,49 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<PostTapeApp.Models.Post>
+
+@{
+    ViewData["Title"] = "Посты пользователей";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form asp-controller="Home" asp-action="Index">
+    <p>
+        Имя пользователя: <input type="text" name="search"/>
+        <input type="submit" value="Поиск"/>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+                @Html.DisplayNameFor(model => model.User)
+        </th>
+
+        <th>
+                @Html.DisplayNameFor(model => model.DatePublish)
+        </th>
+
+         <th>
+                @Html.DisplayNameFor(model => model.Message)
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+                                <tr>
+                                    <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                                    </td>
+
+                                         <td>
+                    @Html.DisplayFor(modelItem => item.DatePublish)
+                                        </td>
+
+                                        <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                                        </td>                                 
+                                </tr>
+        }
+    </tbody>
+</table>
