@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PostTapeApp.Data;
 using PostTapeApp.Models;
 using System.Diagnostics;
 
@@ -6,17 +8,26 @@ namespace PostTapeApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationContext db) => _db = db;
+
+        public async Task<IActionResult> Index(string search)
         {
-            _logger = logger;
+            IQueryable<Post> post = _db.Posts.Include(p => p.User);
+
+            if (search != null)
+            {
+                if (!String.IsNullOrEmpty(search))
+                {
+                    post = post.Where(p => p.User.Name!.Contains(search));
+                }
+                return View(await post.ToListAsync());
+            }
+
+            return View(await post.ToListAsync());
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         public IActionResult Privacy()
         {
