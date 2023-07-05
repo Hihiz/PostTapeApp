@@ -5,6 +5,7 @@ namespace PostTapeApp.Models;
 public class Post
 {
     public int Id { get; set; }
+    [Display(Name = "Имя пользователя")]
     public int UserId { get; set; }
 
     [Display(Name = "Имя пользователя")]
