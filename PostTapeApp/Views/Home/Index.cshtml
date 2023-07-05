@@ -4,6 +4,10 @@
     ViewData["Title"] = "Посты пользователей";
 }
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
 <form asp-controller="Home" asp-action="Index">
     <p>
         Имя пользователя: <input type="text" name="search"/>
@@ -31,19 +35,25 @@
     <tbody>
         @foreach (var item in Model)
         {
-                                <tr>
-                                    <td>
+                                    <tr>
+                                        <td>
                     @Html.DisplayFor(modelItem => item.User.Name)
-                                    </td>
-
-                                         <td>
-                    @Html.DisplayFor(modelItem => item.DatePublish)
                                         </td>
 
-                                        <td>
+                                             <td>
+                    @Html.DisplayFor(modelItem => item.DatePublish)
+                                            </td>
+
+                                            <td>
                     @Html.DisplayFor(modelItem => item.Message)
-                                        </td>                                 
-                                </tr>
+                                            </td>   
+
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                                                <a asp-action="Details" asp-route-id="@item.Id">Подробно</a>
+                                                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                                            </td>
+                                    </tr>
         }
     </tbody>
 </table>

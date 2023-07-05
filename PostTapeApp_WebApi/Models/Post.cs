@@ -1,22 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PostTapeApp.Models;
+namespace PostTapeApp_WebApi.Models;
+
 
 public class Post
 {
     public int Id { get; set; }
-    [Display(Name = "Имя пользователя")]
+
     public int UserId { get; set; }
 
-    [Display(Name = "Имя пользователя")]
-    public User? User { get; set; }
+    [Display(Name = "Пользователь")]
+    public User? User { get; set; } = null!;
 
     [Display(Name = "Дата публикации")]
+    [Required]
     [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
     public DateTime DatePublish { get; set; } = DateTime.Now;
 
-
     [Display(Name = "Сообщение")]
-    public string Message { get; set; }
-
+    [Required]
+    public string Message { get; set; } = null!;
 }
