@@ -5,13 +5,13 @@
 }
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Create">Создать новый</a>
 </p>
 
 <form asp-controller="Home" asp-action="Index">
     <p>
         Имя пользователя: <input type="text" name="search"/>
-        <input type="submit" value="Поиск"/>
+        <input class="btn btn-success" type="submit" value="Поиск"/>
     </p>
 </form>
 
@@ -35,25 +35,25 @@
     <tbody>
         @foreach (var item in Model)
         {
-                                    <tr>
-                                        <td>
+                                            <tr>
+                                                <td>
                     @Html.DisplayFor(modelItem => item.User.Name)
-                                        </td>
+                                                </td>
 
-                                             <td>
+                                                     <td>
                     @Html.DisplayFor(modelItem => item.DatePublish)
-                                            </td>
+                                                    </td>
 
-                                            <td>
+                                                    <td>
                     @Html.DisplayFor(modelItem => item.Message)
-                                            </td>   
+                                                    </td>   
 
-                                            <td>
-                                                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
-                                                <a asp-action="Details" asp-route-id="@item.Id">Подробно</a>
-                                                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                                            </td>
-                                    </tr>
+                                                    <td>                                                   
+                             <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                                                        <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">Подробно</a>
+                                                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                                                    </td>
+                                            </tr>
         }
     </tbody>
 </table>

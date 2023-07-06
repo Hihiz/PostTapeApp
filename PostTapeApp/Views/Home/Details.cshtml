@@ -1,13 +1,12 @@
 ﻿@model PostTapeApp.Models.Post
 
 @{
-    ViewData["Title"] = "Detais";
+    ViewData["Title"] = "Подробно";
 }
 
-<h1>Details</h1>
+<h1>Подробно</h1>
 
 <div>
-    <h4>Post</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -31,7 +30,7 @@
     </dl>
 </div>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to list</a>
+<div>     
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Изменить</a> 
+        <a asp-action="Index" class="btn btn-primary">Список постов</a>
 </div>

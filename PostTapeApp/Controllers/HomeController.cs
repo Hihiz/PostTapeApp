@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using PostTapeApp.Data;
 using PostTapeApp.Models;
-using System.Diagnostics;
 
 namespace PostTapeApp.Controllers
 {
@@ -126,7 +124,7 @@ namespace PostTapeApp.Controllers
                 return NotFound();
             }
 
-            Post post = await _db.Posts.FirstOrDefaultAsync(m => m.Id == id);
+            Post post = await _db.Posts.Include(p => p.User).FirstOrDefaultAsync(m => m.Id == id);
 
             if (post == null)
             {
